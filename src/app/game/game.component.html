@@ -1,0 +1,67 @@
+<div id="outer">
+  <div class="inner"><button type="button" class="btn btn-outline-primary" (click)="onMove()" [disabled]="isP1Winner || isP2Winner">Next move</button></div>
+  <div class="space"></div>
+  <div class="inner"><button type="button" class="btn btn-outline-primary" (click)="onReset()">Reset</button></div>
+</div>
+<p *ngIf="isP1Winner==true">The winner is Player 1</p>
+<p *ngIf="isP2Winner==true">The winner is Player 2</p>
+
+<div align="left">Player 1</div>
+<div>
+  <table class='table table-striped col-md-6 border border-dark'>
+    <thead>
+      <tr>
+        <th>Y\X</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let row of convertedCoordinatesP1; let i = index;">
+        <td>{{i+1}}</td>
+        <th class="field" *ngFor="let field of row">
+          <i *ngIf="field.isShip && !field.isHit" class="fa fa-circle-o" aria-hidden="true"></i>
+          <i *ngIf="field.isHit && field.isShip" class="fa fa-circle" aria-hidden="true"></i>
+          <i *ngIf="field.isHit && !field.isShip" class="fa fa-times" aria-hidden="true"></i>
+        </th>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <div align="left">Player 2</div>
+  <table class='table table-striped col-md-6 border border-dark'>
+    <thead>
+      <tr>
+        <th>Y\X</th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+</thead>
+    <tbody>
+      <tr *ngFor="let row of convertedCoordinatesP2; let i = index;">
+        <td>{{i+1}}</td>
+        <th class="field" *ngFor="let field of row">
+          <i *ngIf="field.isShip && !field.isHit" class="fa fa-circle-o" aria-hidden="true"></i>
+          <i *ngIf="field.isHit && field.isShip" class="fa fa-circle" aria-hidden="true"></i>
+          <i *ngIf="field.isHit && !field.isShip" class="fa fa-times" aria-hidden="true"></i>
+        </th>
+    </tbody>
+  </table>
+</div>
+
